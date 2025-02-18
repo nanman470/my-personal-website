@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上师外院·文化出海</title>
+    <style>
+        :root {
+            --shnu-blue: #0059a7;
+            --shnu-gold: #d4af37;
+            --shnu-green: #008000; /* 新增绿色变量 */
+        }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            background: url('https://imgur.la/images/2025/02/18/c083a4d1dd61e79ec92509222cb5d2e.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+        }
+        .header {
+            background-color: var(--shnu-green); /* 修改为绿色背景 */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            width: 80px;
+            margin-right: 20px;
+        }
+        .title {
+            color: white;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .banner {
+            height: 400px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .overlay {
+            background: rgba(255,255,255,0); /* 设置为透明 */
+            color: white;
+            padding: 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        /* 新增卡片文本样式 */
+        .project-card {
+            background: transparent !important; /* 背景透明 */
+            border: 1px solid rgba(255,255,255,0.2); /* 添加浅色边框提升层次感 */
+            backdrop-filter: blur(5px); /* 添加毛玻璃效果 */
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-card h3 {
+            color: white !important;
+            font-weight: 600; /* 中等加粗 */
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* 文字阴影提升可读性 */
+        }
+        .project-card p {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500; /* 适度加粗 */
+            line-height: 1.6;
+        }
+        .project-card img {
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .cta-button {
+            background: var(--shnu-gold);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        /* 模态窗口样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 15px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-bottom: 20px;
+        }
+        .result img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="https://main.shnu.edu.cn/_upload/tpl/03/a5/933/template933/images/logo.svg" alt="校徽" class="logo">
+        <h1 class="title">外国语学院·文化传播工程</h1>
+    </header>
+
+    <div class="container">
+        <div class="banner">
+            <div class="overlay">
+                <h2>让世界听见中国声音</h2>
+                <p>累计完成56部典籍翻译 | 12个语种国际传播 | 23项非遗译介项目</p>
+                <a href="#projects" class="cta-button" onclick="openModal()">查看项目成果</a>
+            </div>
+        </div>
+
+        <div class="project-grid" id="projects">
+            <div class="project-card">
+                <h3>典籍翻译</h3>
+                <p>《论语》《道德经》多语种译本</p>
+                <img src="translation-icon.png" alt="典籍翻译" style="width:100%">
+            </div>
+            <div class="project-card">
+                <h3>影视译制</h3>
+                <p>纪录片《非遗中国》多语言版本</p>
+                <img src="film-icon.png" alt="影视译制" style="width:100%">
+            </div>
+            <div class="project-card">
+                <h3>数字传播</h3>
+                <p>文化互动网站与VR体验项目</p>
+                <img src="digital-icon.png" alt="数字传播" style="width:100%">
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态窗口 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>项目成果展示</h2>
+            <div class="project-results">
+                <div class="result">
+                    <h3>典籍翻译</h3>
+                    <p>《论语》《道德经》等经典著作的多语种译本，涵盖英语、法语、德语、日语等多种语言，助力中国文化走向世界。</p>
+                    <img src="translation-result.jpg" alt="典籍翻译成果" style="width:100%">
+                </div>
+                <div class="result">
+                    <h3>影视译制</h3>
+                    <p>纪录片《非遗中国》的多语言版本，通过影视作品向世界展示中国非物质文化遗产的独特魅力。</p>
+                    <img src="film-result.jpg" alt="影视译制成果" style="width:100%">
+                </div>
+                <div class="result">
+                    <h3>数字传播</h3>
+                    <p>文化互动网站与VR体验项目，利用现代科技手段，让世界更直观地感受中国文化。</p>
+                    <img src="digital-result.jpg" alt="数字传播成果" style="width:100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
